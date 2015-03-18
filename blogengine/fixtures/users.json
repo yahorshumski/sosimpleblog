@@ -1,0 +1,38 @@
+[
+{
+  "fields": {
+    "username": "shumski",
+    "first_name": "",
+    "last_name": "",
+    "is_active": true,
+    "is_superuser": true,
+    "is_staff": true,
+    "last_login": "2015-03-18T15:54:18.472Z",
+    "groups": [],
+    "user_permissions": [],
+    "password": "pbkdf2_sha256$15000$7tKw4aZ8aVqt$EPZBq3AQepVE+uXSyWkixEJm0GaN5ViKBI+5TdMHNMw=",
+    "email": "yahor.shumski@gmail.com",
+    "date_joined": "2015-03-17T07:57:22.449Z"
+  },
+  "model": "auth.user",
+  "pk": 1
+},
+{
+  "fields": {
+    "username": "bobsmith",
+    "first_name": "",
+    "last_name": "",
+    "is_active": true,
+    "is_superuser": true,
+    "is_staff": true,
+    "last_login": "2015-03-18T20:18:25.312Z",
+    "groups": [],
+    "user_permissions": [],
+    "password": "pbkdf2_sha256$15000$6pByD7gIuvij$U8Q87RgB7wJq31fJc9jiVtQj9i9yqN6CTxey0wiQ8+c=",
+    "email": "yahor.shumski@gmail.com",
+    "date_joined": "2015-03-18T20:18:25.312Z"
+  },
+  "model": "auth.user",
+  "pk": 2
+}
+]
