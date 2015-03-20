@@ -1,0 +1,21 @@
+{
+  "name": "blog",
+  "version": "0.0.0",
+  "authors": [
+    "Yahor Shumski <yahor.shumski@gmail.com>"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "blogengine/static/bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.4",
+    "html5-boilerplate": "~5.0.0"
+  }
+}
