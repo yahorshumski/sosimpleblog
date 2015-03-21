@@ -9,6 +9,7 @@ GnuPGInterface==0.3.2
 gunicorn==19.3.0
 Jinja2==2.7.3
 language-selector==0.1
+Markdown==2.6.1
 MarkupSafe==0.23
 pbr==0.10.7
 psycopg2==2.4.5
