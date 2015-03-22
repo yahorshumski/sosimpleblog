@@ -13,11 +13,11 @@
         <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
         {% load staticfiles %}
-        <link rel="stylesheet" href="{% static 'bower_components/html5-boilerplate/css/normalize.css' %}">
-        <link rel="stylesheet" href="{% static 'bower_components/html5-boilerplate/css/main.css' %}">
+        <link rel="stylesheet" href="{% static 'bower_components/html5-boilerplate/dist/css/normalize.css' %}">
+        <link rel="stylesheet" href="{% static 'bower_components/html5-boilerplate/dist/css/main.css' %}">
         <link rel="stylesheet" href="{% static 'bower_components/bootstrap/dist/css/bootstrap.min.css' %}">
         <link rel="stylesheet" href="{% static 'bower_components/bootstrap/dist/css/bootstrap-theme.min.css' %}">
-        <script src="{% static 'bower_components/html5-boilerplate/js/vendor/modernizr-2.6.2.min.js' %}"></script>
+        <script src="{% static 'bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.6.2.min.js' %}"></script>
     </head>
     <body>
         <!--[if lt IE 7]>
@@ -28,8 +28,8 @@
         {% block content %}{% endblock %}
 
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-        <script>window.jQuery || document.write('<script src="{% static 'bower_components/html5-boilerplate/js/vendor/jquery-1.10.2.min.js' %}"><\/script>')</script>
-        <script src="{% static 'bower_components/html5-boilerplate/js/plugins.js' %}"></script>
+        <script>window.jQuery || document.write('<script src="{% static 'bower_components/html5-boilerplate/dist/js/vendor/jquery-1.10.2.min.js' %}"><\/script>')</script>
+        <script src="{% static 'bower_components/html5-boilerplate/dist/js/plugins.js' %}"></script>
         <script src="{% static 'bower_components/bootstrap/dist/js/bootstrap.min.js' %}"></script>
 
         <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
