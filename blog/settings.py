@@ -125,7 +125,13 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 # Template directory
-TEMPLATE_DIRS = [os.path.join(BASE_DIR, 'templates')]
+PROJECT_DIR = os.path.dirname(__file__) # this is not Django setting.
+TEMPLATE_DIRS = (
+    os.path.join(PROJECT_DIR, "templates"),
+    # here you can add another templates directory if you wish.
+)
+
+#TEMPLATE_DIRS = [os.path.join(BASE_DIR, 'templates')]
 
 INSTALLED_APPS += ('django_jenkins',)
 JENKINS_TASKS = (
