@@ -1,4 +1,5 @@
 import markdown
+import feedparser
 
 from django.test import TestCase, LiveServerTestCase, Client
 from django.utils import timezone
@@ -746,6 +747,18 @@ class PostViewTest(BaseAcceptanceTest):
 
         # Check the link is marked up properly
         self.assertTrue('<a href="http://127.0.0.1:8000/">my first blog post</a>' in response.content)
+ 
+    def test_nonexistent_category_page(self):
+        category_url = '/category/blah/'
+        response = self.client.get(category_url)
+        self.assertEquals(response.status_code, 200)
+        self.assertTrue('No posts found' in response.content)
+
+    def test_nonexistent_tag_page(self):
+        tag_url = '/tag/blah/'
+        response = self.client.get(tag_url)
+        self.assertEquals(response.status_code, 200)
+        self.assertTrue('No posts found' in response.content)
 
 class FlatPageViewTest(BaseAcceptanceTest):
     def test_create_flat_page(self):
@@ -781,3 +794,66 @@ class FlatPageViewTest(BaseAcceptanceTest):
         # Check title and content in response
         self.assertTrue('About me' in response.content)
         self.assertTrue('All about me' in response.content)        
+
+
+class FeedTest(BaseAcceptanceTest):
+    def test_all_post_feed(self):
+        # Create the category
+        category = Category()
+        category.name = 'python'
+        category.description = 'The Python programming language'
+        category.save()
+
+        # Create the tag
+        tag = Tag()
+        tag.name = 'python'
+        tag.description = 'The Python programming language'
+        tag.save()
+
+        # Create the author
+        author = User.objects.create_user('testuser', 'user@example.com', 'password')
+        author.save()
+
+        # Create the site
+        site = Site()
+        site.name = 'example.com'
+        site.domain = 'example.com'
+        site.save()
+
+        # Create a post
+        post = Post()
+        post.title = 'My first post'
+        post.text = 'This is my first blog post'
+        post.slug = 'my-first-post'
+        post.pub_date = timezone.now()
+        post.author = author
+        post.site = site
+        post.category = category
+
+        # Save it
+        post.save()
+
+        # Add the tag
+        post.tags.add(tag)
+        post.save()
+
+        # Check we can find it
+        all_posts = Post.objects.all()
+        self.assertEquals(len(all_posts), 1)
+        only_post = all_posts[0]
+        self.assertEquals(only_post, post)
+
+        # Fetch the feed
+        response = self.client.get('/feeds/posts/')
+        self.assertEquals(response.status_code, 200)
+
+        # Parse the feed
+        feed = feedparser.parse(response.content)
+
+        # Check length
+        self.assertEquals(len(feed.entries), 1)
+
+        # Check post retrieved is the correct one
+        feed_post = feed.entries[0]
+        self.assertEquals(feed_post.title, post.title)
+        self.assertEquals(feed_post.description, post.text)
