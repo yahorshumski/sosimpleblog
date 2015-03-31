@@ -2,3 +2,4 @@
 reports/
 htmlcov/
 .coverage
+blogengine/migrations
