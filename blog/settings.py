@@ -82,6 +82,7 @@ if LIVEHOST:
     BASE_DIR = os.path.dirname(os.path.abspath(__file__))
     STATIC_ROOT = 'staticfiles'
     STATIC_URL = '/static/'
+    TEMPLATE_DIRS = [os.path.join(BASE_DIR, 'templates')]
 
     STATICFILES_DIRS = (
         os.path.join(BASE_DIR, 'static'),
@@ -89,6 +90,8 @@ if LIVEHOST:
 
 else:
     DEBUG = True
+    TEMPLATE_DIRS = [os.path.join(BASE_DIR, 'templates')]
+
     # PREPEND_WWW = False
     # MEDIA_URL = 'http://localhost:8000/static/'
     DATABASES = {
@@ -125,11 +128,6 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 # Template directory
-dirname = os.path.dirname(globals()["__file__"])
-TEMPLATE_DIRS = (
-    os.path.join(dirname, 'templates'),
-)
-#TEMPLATE_DIRS = [os.path.join(BASE_DIR, 'templates')]
 
 INSTALLED_APPS += ('django_jenkins',)
 JENKINS_TASKS = (
