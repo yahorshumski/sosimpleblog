@@ -39,6 +39,8 @@ INSTALLED_APPS = (
     'blogengine',
     'django.contrib.sites',
     'django.contrib.flatpages',
+    'django.contrib.syndication',
+
 )
 
 SITE_ID = 1
@@ -96,3 +98,10 @@ STATIC_URL = '/static/'
 
 # Template directory
 TEMPLATE_DIRS = [os.path.join(BASE_DIR, 'templates')]
+
+INSTALLED_APPS += ('django_jenkins',)
+JENKINS_TASKS = (
+    'django_jenkins.tasks.run_pylint',
+    'django_jenkins.tasks.with_coverage',
+)
+PROJECT_APPS = ['blogengine']
