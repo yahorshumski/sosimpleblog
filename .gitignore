@@ -1,5 +1,4 @@
 *.pyc
-blogengine/static/bower_components/
-blogengine/bower_components/
 reports/
 htmlcov/
+.coverage
