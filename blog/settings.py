@@ -84,7 +84,7 @@ if LIVEHOST:
     DATABASES['default']['ENGINE'] = 'django.db.backends.postgresql_psycopg2'
     BASE_DIR = os.path.dirname(os.path.abspath(__file__))
     STATIC_ROOT = 'staticfiles'
-    STATIC_URL = '/static/'
+    STATIC_URL = 'app/static/'
     TEMPLATE_DIRS = ['/app/templates/']
 
     STATICFILES_DIRS = (
@@ -94,6 +94,7 @@ if LIVEHOST:
 else:
     DEBUG = True
     TEMPLATE_DIRS = [os.path.join(BASE_DIR, 'templates')]
+    STATIC_URL = '/static/'
 
     # PREPEND_WWW = False
     # MEDIA_URL = 'http://localhost:8000/static/'
@@ -127,8 +128,6 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
-
-STATIC_URL = '/static/'
 
 # Template directory
 
