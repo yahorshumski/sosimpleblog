@@ -2,7 +2,8 @@ from django.db import models
 from django.contrib.sites.models import Site
 from django.contrib.auth.models import User
 from django.utils.text import slugify
-
+from django.db.models.signals import post_save
+from django.core.cache import cache
 
 
 # Create your models here.
@@ -64,3 +65,10 @@ class Post(models.Model):
         ordering = ["-pub_date"]
 
 
+
+# Define signals
+def new_post(sender, instance, created, **kwargs):
+    cache.clear()
+
+# Set up signals
+post_save.connect(new_post, sender=Post)
