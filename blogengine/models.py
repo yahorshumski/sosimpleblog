@@ -27,6 +27,11 @@ class Category(models.Model):
     class Meta:
         verbose_name_plural = 'categories'
 
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(unicode(self.name))
+        super(Category, self).save(*args, **kwargs)
+
 
 class Tag(models.Model):
     name = models.CharField(max_length=200)
