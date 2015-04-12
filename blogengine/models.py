@@ -49,6 +49,11 @@ class Tag(models.Model):
     def __unicode__(self):
         return self.name        
 
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(unicode(self.name))
+        super(Tag, self).save(*args, **kwargs)
+
 
 class Post(models.Model):
     title = models.CharField(max_length=200)
