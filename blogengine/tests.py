@@ -48,6 +48,16 @@ class TagFactory(factory.django.DjangoModelFactory):
     description = 'The Python programming language'
     slug = 'python'
 
+class AuthorFactory(factory.django.DjangoModelFactory):
+    class Meta:
+        model = User
+        django_get_or_create = ('username','email', 'password',)
+
+    username = 'testuser'
+    email = 'user@example.com'
+    password = 'password'
+
+
 class PostTest(TestCase):
 
     def test_create_category(self):
@@ -70,15 +80,7 @@ class PostTest(TestCase):
 
     def test_create_tag(self):
         # Create the tag
-        tag = Tag()
-
-        # Add attributes
-        tag.name = 'python'
-        tag.description = 'The Python programming language'
-        tag.slug = 'python'
-
-        # Save it
-        tag.save()
+        tag = TagFactory()
 
         # Check we can find it
         all_tags = Tag.objects.all()
@@ -99,11 +101,9 @@ class PostTest(TestCase):
 
         # Create the tag
         tag = TagFactory()
-        tag.save()
 
         # Create the author
-        author = User.objects.create_user('testuser', 'user@example.com', 'password')
-        author.save()
+        author = AuthorFactory()
         
         site = SiteFactory()
         
@@ -350,8 +350,6 @@ class AdminTest(BaseAcceptanceTest):
         # Create the category
         category = CategoryFactory()
 
-        category.save()
-
         # Create the tag
         tag = TagFactory()
 
@@ -390,15 +388,11 @@ class AdminTest(BaseAcceptanceTest):
         # Create the category
         category = CategoryFactory()
 
-        category.save()
-
         # Create the tag
         tag = TagFactory()
 
-
         # Create the author
-        author = User.objects.create_user('testuser', 'user@example.com', 'password')
-        author.save()
+        author = AuthorFactory()
 
         # Create the site
         site = SiteFactory()
@@ -453,8 +447,7 @@ class AdminTest(BaseAcceptanceTest):
         tag = TagFactory()
 
         # Create the author
-        author = User.objects.create_user('testuser', 'user@example.com', 'password')
-        author.save()
+        author = AuthorFactory()
 
         # Create the site
         site = SiteFactory()
@@ -538,8 +531,7 @@ class PostViewTest(BaseAcceptanceTest):
         tag = TagFactory(name='perl', description='The Perl programming language')
 
         # Create the author
-        author = User.objects.create_user('testuser', 'user@example.com', 'password')
-        author.save()
+        author = AuthorFactory()
 
         # Create the site
         site = SiteFactory()        
@@ -590,14 +582,11 @@ class PostViewTest(BaseAcceptanceTest):
         # Create the category
         category = CategoryFactory()
 
-        category.save()
-
         # Create the tag
         tag = TagFactory(name='perl', description='The Perl programming language')
 
         # Create the author
-        author = User.objects.create_user('testuser', 'user@example.com', 'password')
-        author.save()
+        author = AuthorFactory()
 
         # Create the site
         site = SiteFactory()
@@ -654,8 +643,7 @@ class PostViewTest(BaseAcceptanceTest):
         category = CategoryFactory()
 
         # Create the author
-        author = User.objects.create_user('testuser', 'user@example.com', 'password')
-        author.save()
+        author = AuthorFactory()
 
         # Create the site
         site = SiteFactory()
@@ -703,8 +691,7 @@ class PostViewTest(BaseAcceptanceTest):
         tag = TagFactory()
 
         # Create the author
-        author = User.objects.create_user('testuser', 'user@example.com', 'password')
-        author.save()
+        author = AuthorFactory()
 
         # Create the site
         site = SiteFactory()
@@ -767,8 +754,7 @@ class PostViewTest(BaseAcceptanceTest):
         tag = TagFactory(name='perl', description='The Perl programming language')
 
         # Create the author
-        author = User.objects.create_user('testuser', 'user@example.com', 'password')
-        author.save()
+        author = AuthorFactory()
 
         # Create the site
         site = SiteFactory()
@@ -857,8 +843,7 @@ class FeedTest(BaseAcceptanceTest):
         tag = TagFactory()
 
         # Create the author
-        author = User.objects.create_user('testuser', 'user@example.com', 'password')
-        author.save()
+        author = AuthorFactory()
 
         # Create the site
         site = SiteFactory()
@@ -913,9 +898,8 @@ class FeedTest(BaseAcceptanceTest):
         tag = TagFactory()
 
         # Create the author
-        author = User.objects.create_user('testuser', 'user@example.com', 'password')
-        author.save()
-
+        author = AuthorFactory()
+        
         # Create the site
         site = SiteFactory()
 
