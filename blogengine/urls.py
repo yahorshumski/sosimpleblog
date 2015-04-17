@@ -31,5 +31,8 @@ urlpatterns = patterns('',
 
     # Post RSS feed
     url(r'^feeds/posts/$', PostsFeed()),
+    
+    # Search posts
+    url(r'^search', 'blogengine.views.getSearchResults'),
 
 )
