@@ -48,7 +48,7 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.flatpages',
     'django.contrib.syndication',
-
+    'django.contrib.sitemaps',
 )
 
 SITE_ID = 1
